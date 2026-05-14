@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Database Crisis</title>
+
+<style>
+
+body{
+    margin:0;
+    background:black;
+    color:#00ff88;
+    font-family:Consolas;
+    overflow-x:hidden;
+}
+
+.container{
+    width:90%;
+    max-width:900px;
+    margin:auto;
+    padding:30px;
+}
+
+.title{
+    text-align:center;
+    font-size:50px;
+    margin-top:30px;
+    text-shadow:0 0 20px #00ff88;
+}
+
+.subtitle{
+    text-align:center;
+    margin-bottom:40px;
+    color:#66ffcc;
+}
+
+.box{
+    border:2px solid #00ff88;
+    padding:25px;
+    margin-bottom:30px;
+    border-radius:10px;
+    box-shadow:0 0 15px #00ff88;
+}
+
+button{
+    background:black;
+    color:#00ff88;
+    border:2px solid #00ff88;
+    padding:12px 25px;
+    cursor:pointer;
+    margin-top:15px;
+    font-size:16px;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#00ff88;
+    color:black;
+}
+
+.hidden{
+    display:none;
+}
+
+.correct{
+    color:lime;
+    font-weight:bold;
+}
+
+.wrong{
+    color:red;
+    font-weight:bold;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    background:black;
+    border:2px solid #00ff88;
+    color:#00ff88;
+    margin-top:10px;
+}
+
+.score{
+    position:fixed;
+    top:10px;
+    right:20px;
+    font-size:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="score">
+Score: <span id="score">0</span>
+</div>
+
+<div class="container">
+
+<div class="title">
+DATABASE CRISIS
+</div>
+
+<div class="subtitle">
+AI Database Rescue Mission
+</div>
+
+<div class="box">
+<h2>System Alert</h2>
+
+<p>
+Nexus Data Center 遭受駭客攻擊。<br>
+你是新進 Database Engineer。<br><br>
+
+你的任務：
+<ul>
+<li>修復 ER Model</li>
+<li>破解 SQL 問題</li>
+<li>恢復 Database System</li>
+</ul>
+</p>
+
+<button onclick="startGame()">
+Start Mission
+</button>
+</div>
+
+<div id="level1" class="box hidden">
+
+<h2>LEVEL 1：ER Diagram Repair</h2>
+
+<p>
+一個學生可以修很多課程，一門課程也可以有很多學生。<br><br>
+
+請問這是哪種關係？
+</p>
+
+<button onclick="check1('A')">
+A. One-to-One
+</button>
+
+<button onclick="check1('B')">
+B. One-to-Many
+</button>
+
+<button onclick="check1('C')">
+C. Many-to-Many
+</button>
+
+<p id="result1"></p>
+
+</div>
+
+<div id="level2" class="box hidden">
+
+<h2>LEVEL 2：SQL Hacker Battle</h2>
+
+<p>
+請輸入查詢所有 users 資料的 SQL 指令：
+</p>
+
+<input type="text" id="sqlAnswer">
+
+<button onclick="check2()">
+Execute SQL
+</button>
+
+<p id="result2"></p>
+
+</div>
+
+<div id="level3" class="box hidden">
+
+<h2>LEVEL 3：API Recovery</h2>
+
+<p>
+哪一個是正確的 Login SQL？
+</p>
+
+<button onclick="check3('A')">
+A. SELECT * FORM users
+</button>
+
+<button onclick="check3('B')">
+B. SELECT * FROM users WHERE email=? AND password=?
+</button>
+
+<button onclick="check3('C')">
+C. DELETE users
+</button>
+
+<p id="result3"></p>
+
+</div>
+
+<div id="final" class="box hidden">
+
+<h1>
+DATABASE RESTORED
+</h1>
+
+<p>
+恭喜你成功修復 Nexus Data Center。<br><br>
+
+你已完成：
+<ul>
+<li>ER Modeling</li>
+<li>SQL Query</li>
+<li>Database Programming</li>
+</ul>
+
+系統已恢復正常。
+</p>
+
+<h2>
+Final Score: <span id="finalScore"></span>
+</h2>
+
+</div>
+
+</div>
+
+<script>
+
+let score = 0;
+
+function updateScore(){
+    document.getElementById("score").innerText = score;
+}
+
+function startGame(){
+    document.getElementById("level1").classList.remove("hidden");
+}
+
+function check1(answer){
+
+    if(answer === "C"){
+        score += 10;
+        updateScore();
+
+        document.getElementById("result1").innerHTML =
+        "<span class='correct'>Correct! System repaired.</span>";
+
+        document.getElementById("level2").classList.remove("hidden");
+
+    }else{
+
+        document.getElementById("result1").innerHTML =
+        "<span class='wrong'>Wrong Answer.</span>";
+    }
+}
+
+function check2(){
+
+    let ans = document.getElementById("sqlAnswer")
+    .value
+    .toLowerCase()
+    .trim();
+
+    if(ans === "select * from users;" || ans === "select * from users"){
+
+        score += 10;
+        updateScore();
+
+        document.getElementById("result2").innerHTML =
+        "<span class='correct'>SQL Executed Successfully.</span>";
+
+        document.getElementById("level3").classList.remove("hidden");
+
+    }else{
+
+        document.getElementById("result2").innerHTML =
+        "<span class='wrong'>SQL Error Detected.</span>";
+    }
+}
+
+function check3(answer){
+
+    if(answer === "B"){
+
+        score += 10;
+        updateScore();
+
+        document.getElementById("result3").innerHTML =
+        "<span class='correct'>API Restored.</span>";
+
+        document.getElementById("final").classList.remove("hidden");
+
+        document.getElementById("finalScore").innerText = score;
+
+    }else{
+
+        document.getElementById("result3").innerHTML =
+        "<span class='wrong'>System Failure.</span>";
+    }
+}
+
+</script>
+
+</body>
+</html>
