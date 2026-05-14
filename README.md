@@ -14,3 +14,17 @@
 * **負責部分**：繪製 Entity Relationship Diagram 、Critical Path Analysis、撰寫 SWOT 分析、可行性分析、未來展望以及整體文件排版美編。
 
 ---
+## 3. Database Crisis – AI Database Rescue Game
+* **製作動機**：想在複習資料庫管理時增添趣味。
+* **專案類型**：AI 結合資料庫學習之互動式闖關遊戲。
+* **專案內容**：將傳統 DBMS 與 SQL 學習轉化為 Cyberpunk 風格的沉浸式逃脫任務，透過遊戲化方式提升資料庫學習動機與理解能力。
+* **核心概念**：
+  - ER Modeling
+  - SQL Query Practice
+  - Database Programming Concepts
+  - API & Backend Logic
+  - Gamification Design
+  - AI-assisted Development
+* **負責部分**：自行完成，並在過程中運用 AI 工具輔助。
+
+---
